@@ -1,24 +1,13 @@
-variable "token" {
-  description = "Github OAuth token"
-  default = ""
+variable "project" {
+	default = "warm-rookery-342906"
+}
+variable "region" {
+	default = "us-central1" # Choose a region
 }
 
-variable "repo_name" {
-  description = "Github repository name"
-  default = "test"
+variable "function_name" {
+  default = "helloWorld-function"
 }
-
-variable "description" {
-  description = "Github repository description"
-  default = "test"
-}
-
-variable "webhook_url" {
-  description = "Cloud function webhook url"
-  default = "https://GCP_REGION-PROJECT_ID.cloudfunctions.net/hello_http"
-}
-
-variable "webhook_event" {
-  description = "Github webhook event"
-  default = "push"
+variable "function_entry_point" {
+  default = "helloWorld"
 }
