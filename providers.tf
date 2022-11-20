@@ -16,5 +16,5 @@ provider "google" {
   region  = var.region
 }
 provider "github" {
-  token = var.token 
+  token = var.token
 }

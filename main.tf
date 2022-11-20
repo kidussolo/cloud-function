@@ -1,6 +1,6 @@
 locals {
-  timestamp = formatdate("YYMMDDhhmmss", timestamp())
-	source_dir = "${path.module}/cloud-function"
+  timestamp  = formatdate("YYMMDDhhmmss", timestamp())
+  source_dir = "${path.module}/cloud-function"
 }
 
 # Compress source code
@@ -12,8 +12,8 @@ data "archive_file" "source" {
 
 # Create a bucket to store the compressed zip file
 resource "google_storage_bucket" "bucket" {
-  name                        = "${var.project}-function"
-  location                    = "US"
+  name                        = var.bucket_name
+  location                    = var.bucket_region
   uniform_bucket_level_access = true
 }
 
@@ -68,6 +68,7 @@ resource "google_cloudfunctions_function" "function" {
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.object.name
   entry_point           = var.function_entry_point
+  region                = var.cloud_function_region
 
   trigger_http = true
 }
@@ -84,10 +85,10 @@ resource "google_cloudfunctions_function_iam_member" "invoker" {
 
 # Create a public GitHub Repo
 resource "github_repository" "repo" {
-  name         = var.repo_name
-  visibility = "public"
+  name       = var.repo_name
+  visibility = "private"
   has_issues = true
-  auto_init = true
+  auto_init  = true
 }
 
 # Add a Webhook to the repo for the event provided (Issues event)

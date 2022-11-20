@@ -1,8 +1,8 @@
 variable "project" {
-	default = "test-project-2022-368715"
+  default = "cloud-function-test-369118"
 }
 variable "region" {
-	default = "us-central1" 
+  default = "northamerica-northeast1"
 }
 
 variable "function_name" {
@@ -12,16 +12,31 @@ variable "function_entry_point" {
   default = "helloWorld"
 }
 
+variable "cloud_function_region" {
+  default = "northamerica-northeast1"
+}
+
 variable "token" {
   description = "Github OAuth token"
 }
 
 variable "repo_name" {
   description = "Github repository name"
-  default = "cloud-functions"
+  default     = "Test-SC-API"
 }
 
 variable "webhook_event" {
   description = "Github webhook event"
-  default = "issues"
+  default     = "issues"
 }
+
+variable "bucket_name" {
+  default = "sc-bucket-1"
+}
+
+variable "bucket_region" {
+  default = "northamerica-northeast1"
+}
+
+
+
